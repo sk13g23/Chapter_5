@@ -2,7 +2,7 @@ import numbers
 from numbers import Number
 import math
 
-class RPcalc:
+class RPCalc:
     def __init__(self):
         self.stack = []
 
