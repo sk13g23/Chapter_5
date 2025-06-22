@@ -2,36 +2,37 @@ class Deque:
     def __init__(self, size):
         self.size  = size
         self.list = [None for _ in range(size)]
+        self.right = 0
         self.left = 0
-        self.right = size-1
 
-    def append(self , x):
-        if self.list[self.right] is None:
-            self.list[self.right] = x
-            self.right -= 1
-        else:
-            pass
 
-    def appendleft(self , x):
-        if self.list[self.left] is None:
-            self.list[self.left] = x
-            self.left += 1
-        else:
-            pass
+    def append(self,x):
+        self.list[self.right % self.size] = x
+        self.right += 1
 
 
     def pop(self):
-        return self.list.pop()
+        value = self.list[(self.right-1) % self.size]
+        self.list[(self.right -1) % self.size] = None
+        self.right -= 1
+        return value
 
-    def popleft(self):
-        return self.list.pop(0)
 
     def peek(self):
-        return self.list[-1]
+        return self.list[(self.right-1) % self.size]
+
+    def appendleft(self , x):
+        self.list [(self.left % self.size)]= x
+        self.left -= 1
+
+    def popleft(self):
+        value = self.list[(self.left % self.size)]
+        self.list[(self.left % self.size)] = None
+        self.left += 1
+        return value
 
     def peekleft(self):
-        return self.list[0]
-
+        return self.list[(self.left) % self.size]
 
     def __len__(self):
-        return len(self.list)
+        return self.right - self.left
