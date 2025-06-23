@@ -4,6 +4,7 @@ class Deque:
         self.list = [None for _ in range(size)]
         self.right = 0
         self.left = 0
+        self.counter = 0
 
 
     def append(self,x):
@@ -26,8 +27,8 @@ class Deque:
             self.list [(self.left % self.size)]= x
             self.left -= 1
         else:
+            self.list[((self.left -1) % self.size)] = x
             self.left -= 1
-            self.appendleft(x)
 
 
     def popleft(self):
@@ -41,3 +42,14 @@ class Deque:
 
     def __len__(self):
         return self.right - self.left
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.counter < self.size:
+            val = self.list[self.counter]
+            self.counter += 1
+            return val
+        else:
+            raise StopIteration
