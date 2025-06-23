@@ -44,6 +44,7 @@ class Deque:
         return self.right - self.left
 
     def __iter__(self):
+        self.counter = 0
         return self
 
     def __next__(self):
