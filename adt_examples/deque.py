@@ -48,7 +48,7 @@ class Deque:
         return self
 
     def __next__(self):
-        while self.counter != self.right:
+        while self.counter != self.right-1:
             val = self.list[self.counter]
             self.counter += 1
             return val
