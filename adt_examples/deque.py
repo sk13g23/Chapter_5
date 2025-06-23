@@ -22,8 +22,13 @@ class Deque:
         return self.list[(self.right-1) % self.size]
 
     def appendleft(self , x):
-        self.list [(self.left % self.size)]= x
-        self.left -= 1
+        if self.list[(self.left) % self.size] == None:
+            self.list [(self.left % self.size)]= x
+            self.left -= 1
+        else:
+            self.left -= 1
+            self.appendleft(x)
+
 
     def popleft(self):
         value = self.list[(self.left % self.size)]
