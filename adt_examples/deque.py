@@ -49,7 +49,7 @@ class Deque:
 
     def __next__(self):
         while self.counter != self.right-1:
-            val = self.list[self.counter]
+            val = self.list[self.counter%self.size]
             self.counter += 1
             return val
         else:
