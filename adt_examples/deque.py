@@ -48,9 +48,31 @@ class Deque:
         return self
 
     def __next__(self):
-        while self.counter != self.right-1:
+        while self.counter != self.right:
             val = self.list[self.counter%self.size]
             self.counter += 1
             return val
         else:
             raise StopIteration
+
+
+def base_data():
+    Q = Deque(5)
+    Q.append(5)
+    Q.append(10)
+    Q.append(15)
+    Q.append(20)
+    Q.append(25)
+    Q.popleft()
+    Q.popleft()
+    Q.append(35)
+    Q.append(40)
+
+    T = Deque(4)
+    T.append('n')
+    T.append('n+1')
+    T.appendleft('n+2')
+    T.appendleft('n+3')
+    T.pop()
+    T.append('n+4')
+    return Q, T
