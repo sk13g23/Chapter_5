@@ -43,18 +43,34 @@ class Deque:
     def __len__(self):
         return self.right - self.left
 
+    #def __iter__(self):
+        #self.counter = self.left
+        #return self
+
+    #def __next__(self):
+        #while self.counter != self.right:
+            #val = self.list[self.counter%self.size]
+            #self.counter += 1
+            #return val
+        #else:
+            #raise StopIteration
     def __iter__(self):
-        self.counter = self.left
-        return self
+        return self.DequeIterator(self)
 
-    def __next__(self):
-        while self.counter != self.right:
-            val = self.list[self.counter%self.size]
-            self.counter += 1
+    class DequeIterator:
+        def __init__(self, deque):
+            self.deque = deque
+            self.index = deque.left
+
+        def __iter__(self):
+            return self
+
+        def __next__(self):
+            if self.index == self.deque.right:
+                raise StopIteration
+            val = self.deque.list[self.index % self.deque.size]
+            self.index += 1
             return val
-        else:
-            raise StopIteration
-
 
 def base_data():
     Q = Deque(5)
