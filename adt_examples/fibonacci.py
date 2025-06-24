@@ -10,4 +10,3 @@ class Fib:
         val = self.num1 + self.num2
         self.num1, self.num2 = self.num2, val
         return val
-
